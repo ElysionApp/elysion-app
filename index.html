@@ -1,132 +1,568 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Elysion App</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#100c20">
+<title>Elysion App</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: Arial, sans-serif;
-      color: white;
-      background:
-        radial-gradient(circle at top, #35206b 0%, #151329 42%, #080812 100%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 24px;
-    }
-
-    .app {
-      width: 100%;
-      max-width: 520px;
-      text-align: center;
-    }
-
-    .logo {
-      font-size: 64px;
-      margin-bottom: 10px;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 42px;
-      background: linear-gradient(90deg, #c69cff, #ffffff, #76dfff);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .subtitle {
-      margin: 12px 0 35px;
-      color: #c9c5db;
-      line-height: 1.6;
-    }
-
-    .card {
-      padding: 24px;
-      border: 1px solid rgba(255,255,255,.15);
-      border-radius: 24px;
-      background: rgba(255,255,255,.07);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 20px 60px rgba(0,0,0,.35);
-    }
-
-    .card h2 {
-      margin-top: 0;
-    }
-
-    button {
-      width: 100%;
-      border: 0;
-      border-radius: 15px;
-      padding: 16px;
-      margin-top: 12px;
-      font-size: 16px;
-      font-weight: bold;
-      color: white;
-      cursor: pointer;
-      background: linear-gradient(90deg, #7c4dff, #b14cff);
-    }
-
-    button:active {
-      transform: scale(.98);
-    }
-
-    .signature {
-      margin-top: 30px;
-      font-family: cursive;
-      font-size: 22px;
-      opacity: .85;
-    }
-  </style>
+<style>
+*{box-sizing:border-box}
+:root{
+  --bg:#080812;
+  --card:rgba(255,255,255,.07);
+  --line:rgba(255,255,255,.14);
+  --text:#fff;
+  --soft:#c9c5db;
+  --violet:#7c4dff;
+  --pink:#b53cff;
+}
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Arial,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at top,#392079 0%,#17142e 38%,#080812 78%);
+}
+.app{
+  width:100%;
+  max-width:560px;
+  margin:auto;
+  padding:32px 20px 45px;
+}
+.logo{
+  font-size:60px;
+  text-align:center;
+  margin-top:20px;
+}
+h1{
+  margin:8px 0 4px;
+  text-align:center;
+  font-size:44px;
+  background:linear-gradient(90deg,#d6b6ff,#fff,#7ce7ff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+.subtitle{
+  color:var(--soft);
+  text-align:center;
+  line-height:1.55;
+  margin:12px 0 30px;
+}
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:26px;
+  padding:22px;
+  box-shadow:0 20px 60px rgba(0,0,0,.35);
+  backdrop-filter:blur(12px);
+}
+.card h2{
+  text-align:center;
+  margin:4px 0 18px;
+}
+button,.btn{
+  width:100%;
+  border:0;
+  border-radius:16px;
+  padding:16px;
+  margin:7px 0;
+  font-size:16px;
+  font-weight:700;
+  color:#fff;
+  background:linear-gradient(90deg,var(--violet),var(--pink));
+  cursor:pointer;
+}
+button:active{transform:scale(.985)}
+.secondary{
+  background:rgba(255,255,255,.08);
+  border:1px solid var(--line);
+}
+.back{
+  width:auto;
+  padding:10px 15px;
+  margin:0 0 16px;
+  background:rgba(255,255,255,.09);
+}
+.hidden{display:none!important}
+.step-title{
+  font-size:13px;
+  color:#cdbaff;
+  text-transform:uppercase;
+  letter-spacing:1.4px;
+  margin-bottom:7px;
+}
+h3{
+  margin:0 0 18px;
+  font-size:27px;
+}
+label{
+  display:block;
+  margin:14px 0 7px;
+  color:#ddd8eb;
+  font-weight:700;
+}
+input,textarea,select{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px;
+  background:rgba(0,0,0,.25);
+  color:white;
+  font-size:16px;
+  outline:none;
+}
+textarea{
+  min-height:150px;
+  resize:vertical;
+}
+input:focus,textarea:focus{
+  border-color:#a875ff;
+  box-shadow:0 0 0 3px rgba(168,117,255,.12);
+}
+.languages{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.languages button{
+  background:rgba(255,255,255,.08);
+  border:1px solid var(--line);
+}
+.languages button.active{
+  background:linear-gradient(90deg,var(--violet),var(--pink));
+}
+.photo-box{
+  border:1px dashed rgba(255,255,255,.28);
+  border-radius:18px;
+  padding:14px;
+  text-align:center;
+  margin-top:10px;
+}
+.photo-box input{
+  border:0;
+  background:none;
+  padding:8px 0;
+}
+#photoPreview{
+  width:100%;
+  max-height:320px;
+  object-fit:contain;
+  border-radius:16px;
+  margin-top:12px;
+  display:none;
+}
+.progress{
+  display:flex;
+  gap:6px;
+  margin:0 0 22px;
+}
+.progress span{
+  height:6px;
+  flex:1;
+  border-radius:99px;
+  background:rgba(255,255,255,.12);
+}
+.progress span.on{
+  background:linear-gradient(90deg,var(--violet),var(--pink));
+}
+.summary{
+  line-height:1.6;
+  color:#e3def0;
+}
+.summary strong{color:#fff}
+.final-prompt{
+  white-space:pre-wrap;
+  background:rgba(0,0,0,.28);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:16px;
+  margin:14px 0;
+  font-size:14px;
+  line-height:1.55;
+  max-height:340px;
+  overflow:auto;
+}
+.notice{
+  color:#bfb8d3;
+  font-size:13px;
+  line-height:1.5;
+  margin-top:12px;
+}
+.signature{
+  text-align:center;
+  margin-top:30px;
+  font-family:cursive;
+  font-size:25px;
+  opacity:.86;
+}
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:25px;
+  transform:translateX(-50%);
+  background:#211932;
+  border:1px solid var(--line);
+  padding:12px 18px;
+  border-radius:14px;
+  display:none;
+  z-index:20;
+}
+</style>
 </head>
 
 <body>
 
-  <main class="app">
+<div class="app">
 
-    <div class="logo">✨</div>
+<section id="home">
+  <div class="logo">✨</div>
+  <h1>Elysion</h1>
 
-    <h1>Elysion</h1>
+  <p class="subtitle">
+    Donnez vie à votre imagination.<br>
+    Images, prompts interactifs et univers créatifs.
+  </p>
 
-    <p class="subtitle">
-      Donnez vie à votre imagination.<br>
-      Images, prompts interactifs et univers créatifs.
+  <div class="card">
+    <h2>Bienvenue dans Elysion</h2>
+
+    <p class="subtitle" style="margin-top:0">
+      Choisissez votre expérience créative.
     </p>
 
-    <section class="card">
+    <button onclick="openCreator()">
+      🎨 Créer une image
+    </button>
 
-      <h2>Bienvenue dans Elysion</h2>
+    <button onclick="soon('Prompts interactifs')">
+      ✨ Prompt interactif
+    </button>
 
-      <p>
-        Choisissez votre expérience créative.
-      </p>
+    <button onclick="soon('Univers Elysion')">
+      🌙 Explorer Elysion
+    </button>
+  </div>
 
-      <button onclick="alert('Création d’image — bientôt disponible ✨')">
-        🎨 Créer une image
-      </button>
+  <div class="signature">Elysion</div>
+</section>
 
-      <button onclick="alert('Prompts interactifs — bientôt disponibles ✨')">
-        ✨ Prompt interactif
-      </button>
 
-      <button onclick="alert('Univers Elysion — bientôt disponible ✨')">
-        🌙 Explorer Elysion
-      </button>
+<section id="creator" class="hidden">
 
-    </section>
+  <button class="back" onclick="goHome()">← Accueil</button>
 
-    <div class="signature">
-      Elysion
+  <div class="card">
+
+    <div class="progress">
+      <span id="p1"></span>
+      <span id="p2"></span>
+      <span id="p3"></span>
+      <span id="p4"></span>
+      <span id="p5"></span>
     </div>
 
-  </main>
+
+    <!-- ÉTAPE 1 -->
+    <div id="step1">
+      <div class="step-title">Étape 1 sur 5</div>
+      <h3>🌍 Votre langue</h3>
+
+      <p class="subtitle" style="text-align:left">
+        Choisissez la langue utilisée pour votre création.
+      </p>
+
+      <div class="languages">
+        <button onclick="chooseLanguage('Français',this)">🇫🇷 Français</button>
+        <button onclick="chooseLanguage('English',this)">🇬🇧 English</button>
+        <button onclick="chooseLanguage('Español',this)">🇪🇸 Español</button>
+        <button onclick="chooseLanguage('Português',this)">🇵🇹 Português</button>
+      </div>
+    </div>
+
+
+    <!-- ÉTAPE 2 -->
+    <div id="step2" class="hidden">
+      <div class="step-title">Étape 2 sur 5</div>
+      <h3>✨ Votre nom</h3>
+
+      <label for="name">Prénom, pseudo ou nom du personnage</label>
+      <input id="name" type="text" placeholder="Ex. Gina, Vespera, Elysion...">
+
+      <button onclick="nextName()">Continuer →</button>
+      <button class="secondary" onclick="showStep(1)">← Retour</button>
+    </div>
+
+
+    <!-- ÉTAPE 3 -->
+    <div id="step3" class="hidden">
+      <div class="step-title">Étape 3 sur 5</div>
+      <h3>📸 Photo de référence</h3>
+
+      <p class="subtitle" style="text-align:left">
+        Ajoutez la photo qui servira de référence visuelle.
+      </p>
+
+      <div class="photo-box">
+        <input
+          id="photo"
+          type="file"
+          accept="image/*"
+          onchange="previewPhoto(event)"
+        >
+        <img id="photoPreview" alt="Aperçu">
+      </div>
+
+      <p class="notice">
+        La photo reste actuellement sur votre appareil et sert uniquement
+        à l’aperçu dans cette version de l’application.
+      </p>
+
+      <button onclick="nextPhoto()">Continuer →</button>
+      <button class="secondary" onclick="showStep(2)">← Retour</button>
+    </div>
+
+
+    <!-- ÉTAPE 4 -->
+    <div id="step4" class="hidden">
+      <div class="step-title">Étape 4 sur 5</div>
+      <h3>🪄 Votre création</h3>
+
+      <label for="prompt">
+        Décrivez l’image que vous souhaitez créer
+      </label>
+
+      <textarea
+        id="prompt"
+        placeholder="Ex. Portrait cinématographique fantasy, robe gothique, château sous la lune, lumière magique..."
+      ></textarea>
+
+      <button onclick="prepareCreation()">Préparer ma création ✨</button>
+      <button class="secondary" onclick="showStep(3)">← Retour</button>
+    </div>
+
+
+    <!-- ÉTAPE 5 -->
+    <div id="step5" class="hidden">
+      <div class="step-title">Étape 5 sur 5</div>
+      <h3>✨ Création prête</h3>
+
+      <div class="summary" id="summary"></div>
+
+      <label>Prompt final Elysion</label>
+      <div id="finalPrompt" class="final-prompt"></div>
+
+      <button onclick="copyPrompt()">
+        📋 Copier le prompt
+      </button>
+
+      <button class="secondary" onclick="showStep(4)">
+        ← Modifier
+      </button>
+
+      <button class="secondary" onclick="restartCreator()">
+        ✨ Nouvelle création
+      </button>
+
+      <p class="notice">
+        La génération d’image directement dans Elysion sera ajoutée
+        dans une prochaine étape avec un service sécurisé côté serveur.
+        Aucune clé API ne doit être placée publiquement dans ce fichier.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="signature">Elysion</div>
+</section>
+
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+let creation = {
+  language: "",
+  name: "",
+  photo: false,
+  prompt: ""
+};
+
+function openCreator(){
+  document.getElementById("home").classList.add("hidden");
+  document.getElementById("creator").classList.remove("hidden");
+  showStep(1);
+  window.scrollTo(0,0);
+}
+
+function goHome(){
+  document.getElementById("creator").classList.add("hidden");
+  document.getElementById("home").classList.remove("hidden");
+  window.scrollTo(0,0);
+}
+
+function showStep(n){
+  for(let i=1;i<=5;i++){
+    document.getElementById("step"+i).classList.add("hidden");
+    document.getElementById("p"+i).classList.toggle("on",i<=n);
+  }
+  document.getElementById("step"+n).classList.remove("hidden");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function chooseLanguage(language,button){
+  creation.language=language;
+
+  document
+    .querySelectorAll(".languages button")
+    .forEach(b=>b.classList.remove("active"));
+
+  button.classList.add("active");
+
+  setTimeout(()=>showStep(2),250);
+}
+
+function nextName(){
+  const value=document.getElementById("name").value.trim();
+
+  if(!value){
+    toast("Indiquez votre nom ou celui du personnage.");
+    return;
+  }
+
+  creation.name=value;
+  showStep(3);
+}
+
+function previewPhoto(event){
+  const file=event.target.files[0];
+  if(!file)return;
+
+  creation.photo=true;
+
+  const reader=new FileReader();
+
+  reader.onload=function(e){
+    const img=document.getElementById("photoPreview");
+    img.src=e.target.result;
+    img.style.display="block";
+  };
+
+  reader.readAsDataURL(file);
+}
+
+function nextPhoto(){
+  if(!creation.photo){
+    toast("Ajoutez d’abord une photo de référence.");
+    return;
+  }
+
+  showStep(4);
+}
+
+function prepareCreation(){
+  const text=document.getElementById("prompt").value.trim();
+
+  if(!text){
+    toast("Décrivez d’abord l’image à créer.");
+    return;
+  }
+
+  creation.prompt=text;
+
+  const final =
+`LANGUE : ${creation.language}
+
+PERSONNAGE : ${creation.name}
+
+RÉFÉRENCE VISUELLE :
+Utiliser obligatoirement la photo de référence téléchargée.
+Préserver fidèlement l’identité visuelle du personnage, son visage,
+son âge apparent, sa texture de peau ou de pelage, sa morphologie
+et tous ses attributs naturels visibles, notamment oreilles, queue,
+fourrure, écailles ou autres caractéristiques existantes.
+Ne pas supprimer ni ajouter de membres ou d’attributs anatomiques.
+La position, la coiffure, la couleur des cheveux et la tenue peuvent
+être adaptées à la scène demandée.
+
+DEMANDE CRÉATIVE :
+${creation.prompt}
+
+QUALITÉ :
+Image verticale cinématographique très détaillée, rendu haut de gamme,
+composition cohérente, anatomie correcte, lumière travaillée,
+textures précises et sujet parfaitement lisible.
+
+SIGNATURE :
+Ajouter en bas à droite la signature « Elysion » en lettres cursives.`;
+
+  document.getElementById("summary").innerHTML =
+    "<strong>Langue :</strong> "+escapeHtml(creation.language)+"<br>"+
+    "<strong>Nom :</strong> "+escapeHtml(creation.name)+"<br>"+
+    "<strong>Photo :</strong> référence chargée ✅";
+
+  document.getElementById("finalPrompt").textContent=final;
+
+  showStep(5);
+}
+
+async function copyPrompt(){
+  const text=document.getElementById("finalPrompt").textContent;
+
+  try{
+    await navigator.clipboard.writeText(text);
+    toast("Prompt copié ✅");
+  }catch(e){
+    toast("Sélectionnez le prompt pour le copier.");
+  }
+}
+
+function restartCreator(){
+  creation={
+    language:"",
+    name:"",
+    photo:false,
+    prompt:""
+  };
+
+  document.getElementById("name").value="";
+  document.getElementById("prompt").value="";
+  document.getElementById("photo").value="";
+  document.getElementById("photoPreview").style.display="none";
+
+  document
+    .querySelectorAll(".languages button")
+    .forEach(b=>b.classList.remove("active"));
+
+  showStep(1);
+}
+
+function soon(name){
+  toast(name+" — bientôt disponible ✨");
+}
+
+function toast(message){
+  const box=document.getElementById("toast");
+  box.textContent=message;
+  box.style.display="block";
+
+  clearTimeout(window.toastTimer);
+
+  window.toastTimer=setTimeout(()=>{
+    box.style.display="none";
+  },2600);
+}
+
+function escapeHtml(text){
+  return text
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+</script>
 
 </body>
 </html>
