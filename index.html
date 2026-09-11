@@ -8,6 +8,7 @@
 
 <style>
 *{box-sizing:border-box}
+
 :root{
   --bg:#080812;
   --card:rgba(255,255,255,.07);
@@ -17,6 +18,7 @@
   --violet:#7c4dff;
   --pink:#b53cff;
 }
+
 body{
   margin:0;
   min-height:100vh;
@@ -25,17 +27,20 @@ body{
   background:
     radial-gradient(circle at top,#392079 0%,#17142e 38%,#080812 78%);
 }
+
 .app{
   width:100%;
-  max-width:560px;
+  max-width:620px;
   margin:auto;
-  padding:32px 20px 45px;
+  padding:32px 20px 50px;
 }
+
 .logo{
   font-size:60px;
   text-align:center;
   margin-top:20px;
 }
+
 h1{
   margin:8px 0 4px;
   text-align:center;
@@ -44,12 +49,14 @@ h1{
   -webkit-background-clip:text;
   color:transparent;
 }
+
 .subtitle{
   color:var(--soft);
   text-align:center;
   line-height:1.55;
   margin:12px 0 30px;
 }
+
 .card{
   background:var(--card);
   border:1px solid var(--line);
@@ -58,11 +65,13 @@ h1{
   box-shadow:0 20px 60px rgba(0,0,0,.35);
   backdrop-filter:blur(12px);
 }
+
 .card h2{
   text-align:center;
   margin:4px 0 18px;
 }
-button,.btn{
+
+button{
   width:100%;
   border:0;
   border-radius:16px;
@@ -74,18 +83,27 @@ button,.btn{
   background:linear-gradient(90deg,var(--violet),var(--pink));
   cursor:pointer;
 }
-button:active{transform:scale(.985)}
+
+button:active{
+  transform:scale(.985);
+}
+
 .secondary{
   background:rgba(255,255,255,.08);
   border:1px solid var(--line);
 }
+
 .back{
   width:auto;
   padding:10px 15px;
   margin:0 0 16px;
   background:rgba(255,255,255,.09);
 }
-.hidden{display:none!important}
+
+.hidden{
+  display:none!important;
+}
+
 .step-title{
   font-size:13px;
   color:#cdbaff;
@@ -93,17 +111,22 @@ button:active{transform:scale(.985)}
   letter-spacing:1.4px;
   margin-bottom:7px;
 }
+
 h3{
   margin:0 0 18px;
   font-size:27px;
 }
+
 label{
   display:block;
   margin:14px 0 7px;
   color:#ddd8eb;
   font-weight:700;
 }
-input,textarea,select{
+
+input,
+textarea,
+select{
   width:100%;
   border:1px solid var(--line);
   border-radius:14px;
@@ -113,26 +136,71 @@ input,textarea,select{
   font-size:16px;
   outline:none;
 }
+
 textarea{
-  min-height:150px;
+  min-height:170px;
   resize:vertical;
 }
-input:focus,textarea:focus{
+
+input:focus,
+textarea:focus,
+select:focus{
   border-color:#a875ff;
   box-shadow:0 0 0 3px rgba(168,117,255,.12);
 }
+
 .languages{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
 }
+
 .languages button{
   background:rgba(255,255,255,.08);
   border:1px solid var(--line);
 }
+
 .languages button.active{
   background:linear-gradient(90deg,var(--violet),var(--pink));
 }
+
+.count-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.count-grid button{
+  font-size:20px;
+  background:rgba(255,255,255,.08);
+  border:1px solid var(--line);
+}
+
+.count-grid button.active{
+  background:linear-gradient(90deg,var(--violet),var(--pink));
+}
+
+.custom-count{
+  margin-top:18px;
+  padding-top:16px;
+  border-top:1px solid var(--line);
+}
+
+.character-card{
+  margin:18px 0;
+  padding:18px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:rgba(0,0,0,.18);
+}
+
+.character-title{
+  font-size:20px;
+  font-weight:800;
+  margin-bottom:12px;
+  color:#eadcff;
+}
+
 .photo-box{
   border:1px dashed rgba(255,255,255,.28);
   border-radius:18px;
@@ -140,38 +208,63 @@ input:focus,textarea:focus{
   text-align:center;
   margin-top:10px;
 }
+
 .photo-box input{
   border:0;
   background:none;
   padding:8px 0;
 }
-#photoPreview{
+
+.preview{
   width:100%;
-  max-height:320px;
+  max-height:330px;
   object-fit:contain;
   border-radius:16px;
   margin-top:12px;
   display:none;
 }
+
 .progress{
   display:flex;
   gap:6px;
   margin:0 0 22px;
 }
+
 .progress span{
   height:6px;
   flex:1;
   border-radius:99px;
   background:rgba(255,255,255,.12);
 }
+
 .progress span.on{
   background:linear-gradient(90deg,var(--violet),var(--pink));
 }
+
+.notice{
+  color:#bfb8d3;
+  font-size:13px;
+  line-height:1.5;
+  margin-top:12px;
+}
+
 .summary{
-  line-height:1.6;
+  line-height:1.7;
   color:#e3def0;
 }
-.summary strong{color:#fff}
+
+.summary strong{
+  color:#fff;
+}
+
+.character-summary{
+  margin:12px 0;
+  padding:12px;
+  border-radius:14px;
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--line);
+}
+
 .final-prompt{
   white-space:pre-wrap;
   background:rgba(0,0,0,.28);
@@ -181,15 +274,10 @@ input:focus,textarea:focus{
   margin:14px 0;
   font-size:14px;
   line-height:1.55;
-  max-height:340px;
+  max-height:420px;
   overflow:auto;
 }
-.notice{
-  color:#bfb8d3;
-  font-size:13px;
-  line-height:1.5;
-  margin-top:12px;
-}
+
 .signature{
   text-align:center;
   margin-top:30px;
@@ -197,6 +285,7 @@ input:focus,textarea:focus{
   font-size:25px;
   opacity:.86;
 }
+
 .toast{
   position:fixed;
   left:50%;
@@ -208,6 +297,8 @@ input:focus,textarea:focus{
   border-radius:14px;
   display:none;
   z-index:20;
+  max-width:90%;
+  text-align:center;
 }
 </style>
 </head>
@@ -217,7 +308,9 @@ input:focus,textarea:focus{
 <div class="app">
 
 <section id="home">
+
   <div class="logo">✨</div>
+
   <h1>Elysion</h1>
 
   <p class="subtitle">
@@ -226,6 +319,7 @@ input:focus,textarea:focus{
   </p>
 
   <div class="card">
+
     <h2>Bienvenue dans Elysion</h2>
 
     <p class="subtitle" style="margin-top:0">
@@ -243,15 +337,19 @@ input:focus,textarea:focus{
     <button onclick="soon('Univers Elysion')">
       🌙 Explorer Elysion
     </button>
+
   </div>
 
   <div class="signature">Elysion</div>
+
 </section>
 
 
 <section id="creator" class="hidden">
 
-  <button class="back" onclick="goHome()">← Accueil</button>
+  <button class="back" onclick="goHome()">
+    ← Accueil
+  </button>
 
   <div class="card">
 
@@ -264,9 +362,14 @@ input:focus,textarea:focus{
     </div>
 
 
-    <!-- ÉTAPE 1 -->
+    <!-- ÉTAPE 1 : LANGUE -->
+
     <div id="step1">
-      <div class="step-title">Étape 1 sur 5</div>
+
+      <div class="step-title">
+        Étape 1 sur 5
+      </div>
+
       <h3>🌍 Votre langue</h3>
 
       <p class="subtitle" style="text-align:left">
@@ -274,144 +377,290 @@ input:focus,textarea:focus{
       </p>
 
       <div class="languages">
-        <button onclick="chooseLanguage('Français',this)">🇫🇷 Français</button>
-        <button onclick="chooseLanguage('English',this)">🇬🇧 English</button>
-        <button onclick="chooseLanguage('Español',this)">🇪🇸 Español</button>
-        <button onclick="chooseLanguage('Português',this)">🇵🇹 Português</button>
+
+        <button onclick="chooseLanguage('Français',this)">
+          🇫🇷 Français
+        </button>
+
+        <button onclick="chooseLanguage('English',this)">
+          🇬🇧 English
+        </button>
+
+        <button onclick="chooseLanguage('Español',this)">
+          🇪🇸 Español
+        </button>
+
+        <button onclick="chooseLanguage('Português',this)">
+          🇵🇹 Português
+        </button>
+
       </div>
+
     </div>
 
 
-    <!-- ÉTAPE 2 -->
+    <!-- ÉTAPE 2 : NOMBRE DE PERSONNAGES -->
+
     <div id="step2" class="hidden">
-      <div class="step-title">Étape 2 sur 5</div>
-      <h3>✨ Votre nom</h3>
 
-      <label for="name">Prénom, pseudo ou nom du personnage</label>
-      <input id="name" type="text" placeholder="Ex. Gina, Vespera, Elysion...">
+      <div class="step-title">
+        Étape 2 sur 5
+      </div>
 
-      <button onclick="nextName()">Continuer →</button>
-      <button class="secondary" onclick="showStep(1)">← Retour</button>
-    </div>
-
-
-    <!-- ÉTAPE 3 -->
-    <div id="step3" class="hidden">
-      <div class="step-title">Étape 3 sur 5</div>
-      <h3>📸 Photo de référence</h3>
+      <h3>👥 Combien de personnages ?</h3>
 
       <p class="subtitle" style="text-align:left">
-        Ajoutez la photo qui servira de référence visuelle.
+        Choisissez le nombre exact de personnages présents dans l’image.
       </p>
 
-      <div class="photo-box">
-        <input
-          id="photo"
-          type="file"
-          accept="image/*"
-          onchange="previewPhoto(event)"
-        >
-        <img id="photoPreview" alt="Aperçu">
+      <div class="count-grid">
+
+        <button onclick="selectCount(1,this)">1</button>
+        <button onclick="selectCount(2,this)">2</button>
+        <button onclick="selectCount(3,this)">3</button>
+        <button onclick="selectCount(4,this)">4</button>
+        <button onclick="selectCount(5,this)">5</button>
+        <button onclick="selectCount(6,this)">6</button>
+
       </div>
 
-      <p class="notice">
-        La photo reste actuellement sur votre appareil et sert uniquement
-        à l’aperçu dans cette version de l’application.
-      </p>
+      <div class="custom-count">
 
-      <button onclick="nextPhoto()">Continuer →</button>
-      <button class="secondary" onclick="showStep(2)">← Retour</button>
+        <label for="customCount">
+          Plus de personnages
+        </label>
+
+        <input
+          id="customCount"
+          type="number"
+          min="7"
+          max="10"
+          placeholder="Entre 7 et 10"
+        >
+
+        <button onclick="useCustomCount()">
+          Valider ce nombre
+        </button>
+
+      </div>
+
+      <button
+        class="secondary"
+        onclick="showStep(1)"
+      >
+        ← Retour
+      </button>
+
     </div>
 
 
-    <!-- ÉTAPE 4 -->
+    <!-- ÉTAPE 3 : FICHES PERSONNAGES -->
+
+    <div id="step3" class="hidden">
+
+      <div class="step-title">
+        Étape 3 sur 5
+      </div>
+
+      <h3>📸 Vos personnages</h3>
+
+      <p class="subtitle" style="text-align:left">
+        Pour chaque personnage, indiquez son nom et ajoutez sa propre photo de référence.
+      </p>
+
+      <div id="charactersContainer"></div>
+
+      <p class="notice">
+        Chaque photo reste actuellement sur votre appareil.
+        Les personnages sont traités comme des identités distinctes.
+      </p>
+
+      <button onclick="validateCharacters()">
+        Continuer →
+      </button>
+
+      <button
+        class="secondary"
+        onclick="showStep(2)"
+      >
+        ← Retour
+      </button>
+
+    </div>
+
+
+    <!-- ÉTAPE 4 : DESCRIPTION -->
+
     <div id="step4" class="hidden">
-      <div class="step-title">Étape 4 sur 5</div>
+
+      <div class="step-title">
+        Étape 4 sur 5
+      </div>
+
       <h3>🪄 Votre création</h3>
 
       <label for="prompt">
-        Décrivez l’image que vous souhaitez créer
+        Décrivez précisément la scène
       </label>
 
       <textarea
         id="prompt"
-        placeholder="Ex. Portrait cinématographique fantasy, robe gothique, château sous la lune, lumière magique..."
+        placeholder="Ex. Gina et Vespera explorent un château abandonné sous une lune violette. Gina tient une lanterne tandis que Vespera ouvre une porte magique..."
       ></textarea>
 
-      <button onclick="prepareCreation()">Préparer ma création ✨</button>
-      <button class="secondary" onclick="showStep(3)">← Retour</button>
+      <button onclick="prepareCreation()">
+        Préparer ma création ✨
+      </button>
+
+      <button
+        class="secondary"
+        onclick="showStep(3)"
+      >
+        ← Retour
+      </button>
+
     </div>
 
 
-    <!-- ÉTAPE 5 -->
+    <!-- ÉTAPE 5 : RÉSUMÉ -->
+
     <div id="step5" class="hidden">
-      <div class="step-title">Étape 5 sur 5</div>
+
+      <div class="step-title">
+        Étape 5 sur 5
+      </div>
+
       <h3>✨ Création prête</h3>
 
-      <div class="summary" id="summary"></div>
+      <div
+        id="summary"
+        class="summary"
+      ></div>
 
-      <label>Prompt final Elysion</label>
-      <div id="finalPrompt" class="final-prompt"></div>
+      <label>
+        Prompt final Elysion
+      </label>
+
+      <div
+        id="finalPrompt"
+        class="final-prompt"
+      ></div>
 
       <button onclick="copyPrompt()">
         📋 Copier le prompt
       </button>
 
-      <button class="secondary" onclick="showStep(4)">
-        ← Modifier
+      <button
+        class="secondary"
+        onclick="showStep(4)"
+      >
+        ← Modifier la scène
       </button>
 
-      <button class="secondary" onclick="restartCreator()">
+      <button
+        class="secondary"
+        onclick="showStep(3)"
+      >
+        👥 Modifier les personnages
+      </button>
+
+      <button
+        class="secondary"
+        onclick="restartCreator()"
+      >
         ✨ Nouvelle création
       </button>
 
       <p class="notice">
-        La génération d’image directement dans Elysion sera ajoutée
-        dans une prochaine étape avec un service sécurisé côté serveur.
-        Aucune clé API ne doit être placée publiquement dans ce fichier.
+        La génération d’image directement dans Elysion sera reliée
+        ensuite à un service sécurisé côté serveur.
+        Aucune clé API privée ne doit être placée dans ce fichier public.
       </p>
+
     </div>
 
   </div>
 
-  <div class="signature">Elysion</div>
+  <div class="signature">
+    Elysion
+  </div>
+
 </section>
 
 </div>
 
-<div id="toast" class="toast"></div>
+<div
+  id="toast"
+  class="toast"
+></div>
+
 
 <script>
+
 let creation = {
-  language: "",
-  name: "",
-  photo: false,
-  prompt: ""
+  language:"",
+  count:0,
+  characters:[],
+  prompt:""
 };
 
+
 function openCreator(){
-  document.getElementById("home").classList.add("hidden");
-  document.getElementById("creator").classList.remove("hidden");
+
+  document
+    .getElementById("home")
+    .classList.add("hidden");
+
+  document
+    .getElementById("creator")
+    .classList.remove("hidden");
+
   showStep(1);
+
   window.scrollTo(0,0);
 }
+
 
 function goHome(){
-  document.getElementById("creator").classList.add("hidden");
-  document.getElementById("home").classList.remove("hidden");
+
+  document
+    .getElementById("creator")
+    .classList.add("hidden");
+
+  document
+    .getElementById("home")
+    .classList.remove("hidden");
+
   window.scrollTo(0,0);
 }
 
+
 function showStep(n){
+
   for(let i=1;i<=5;i++){
-    document.getElementById("step"+i).classList.add("hidden");
-    document.getElementById("p"+i).classList.toggle("on",i<=n);
+
+    document
+      .getElementById("step"+i)
+      .classList.add("hidden");
+
+    document
+      .getElementById("p"+i)
+      .classList.toggle("on",i<=n);
   }
-  document.getElementById("step"+n).classList.remove("hidden");
-  window.scrollTo({top:0,behavior:"smooth"});
+
+  document
+    .getElementById("step"+n)
+    .classList.remove("hidden");
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 }
 
+
 function chooseLanguage(language,button){
+
   creation.language=language;
 
   document
@@ -420,148 +669,577 @@ function chooseLanguage(language,button){
 
   button.classList.add("active");
 
-  setTimeout(()=>showStep(2),250);
+  setTimeout(
+    ()=>showStep(2),
+    220
+  );
 }
 
-function nextName(){
-  const value=document.getElementById("name").value.trim();
 
-  if(!value){
-    toast("Indiquez votre nom ou celui du personnage.");
+function selectCount(number,button){
+
+  creation.count=number;
+
+  document
+    .querySelectorAll(".count-grid button")
+    .forEach(b=>b.classList.remove("active"));
+
+  button.classList.add("active");
+
+  createCharacterForms();
+
+  setTimeout(
+    ()=>showStep(3),
+    220
+  );
+}
+
+
+function useCustomCount(){
+
+  const input=
+    document.getElementById("customCount");
+
+  const number=
+    parseInt(input.value);
+
+  if(
+    !number ||
+    number<7 ||
+    number>10
+  ){
+    toast(
+      "Choisissez un nombre entre 7 et 10."
+    );
     return;
   }
 
-  creation.name=value;
+  creation.count=number;
+
+  document
+    .querySelectorAll(".count-grid button")
+    .forEach(b=>b.classList.remove("active"));
+
+  createCharacterForms();
+
   showStep(3);
 }
 
-function previewPhoto(event){
-  const file=event.target.files[0];
+
+function createCharacterForms(){
+
+  const container=
+    document.getElementById(
+      "charactersContainer"
+    );
+
+  container.innerHTML="";
+
+  const previous=
+    creation.characters || [];
+
+  creation.characters=[];
+
+  for(
+    let i=0;
+    i<creation.count;
+    i++
+  ){
+
+    creation.characters.push({
+      name:
+        previous[i]?.name || "",
+      photo:
+        previous[i]?.photo || false,
+      fileName:
+        previous[i]?.fileName || ""
+    });
+
+    const card=
+      document.createElement("div");
+
+    card.className=
+      "character-card";
+
+    card.innerHTML=`
+
+      <div class="character-title">
+        👤 Personnage ${i+1}
+      </div>
+
+      <label>
+        Nom du personnage ${i+1}
+      </label>
+
+      <input
+        id="name-${i}"
+        type="text"
+        value="${escapeAttribute(
+          creation.characters[i].name
+        )}"
+        placeholder="Ex. Gina, Vespera, Céline..."
+        oninput="updateCharacterName(${i},this.value)"
+      >
+
+      <label>
+        Photo de référence ${i+1}
+      </label>
+
+      <div class="photo-box">
+
+        <input
+          id="photo-${i}"
+          type="file"
+          accept="image/*"
+          onchange="previewCharacterPhoto(${i},event)"
+        >
+
+        <img
+          id="preview-${i}"
+          class="preview"
+          alt="Aperçu personnage ${i+1}"
+        >
+
+      </div>
+
+    `;
+
+    container.appendChild(card);
+  }
+}
+
+
+function updateCharacterName(
+  index,
+  value
+){
+
+  creation
+    .characters[index]
+    .name=value.trim();
+}
+
+
+function previewCharacterPhoto(
+  index,
+  event
+){
+
+  const file=
+    event.target.files[0];
+
   if(!file)return;
 
-  creation.photo=true;
+  creation.characters[index].photo=true;
 
-  const reader=new FileReader();
+  creation.characters[index].fileName=
+    file.name;
+
+  const reader=
+    new FileReader();
 
   reader.onload=function(e){
-    const img=document.getElementById("photoPreview");
+
+    const img=
+      document.getElementById(
+        "preview-"+index
+      );
+
     img.src=e.target.result;
+
     img.style.display="block";
   };
 
   reader.readAsDataURL(file);
 }
 
-function nextPhoto(){
-  if(!creation.photo){
-    toast("Ajoutez d’abord une photo de référence.");
-    return;
+
+function validateCharacters(){
+
+  for(
+    let i=0;
+    i<creation.characters.length;
+    i++
+  ){
+
+    const nameInput=
+      document.getElementById(
+        "name-"+i
+      );
+
+    const name=
+      nameInput.value.trim();
+
+    creation.characters[i].name=name;
+
+    if(!name){
+
+      toast(
+        "Indiquez le nom du personnage "
+        +(i+1)+"."
+      );
+
+      nameInput.focus();
+
+      return;
+    }
+
+    if(
+      !creation.characters[i].photo
+    ){
+
+      toast(
+        "Ajoutez la photo du personnage "
+        +(i+1)+
+        " ("+name+")."
+      );
+
+      return;
+    }
   }
 
   showStep(4);
 }
 
+
 function prepareCreation(){
-  const text=document.getElementById("prompt").value.trim();
+
+  const text=
+    document
+      .getElementById("prompt")
+      .value
+      .trim();
 
   if(!text){
-    toast("Décrivez d’abord l’image à créer.");
+
+    toast(
+      "Décrivez d’abord la scène à créer."
+    );
+
     return;
   }
 
   creation.prompt=text;
 
-  const final =
-`LANGUE : ${creation.language}
+  let references="";
 
-PERSONNAGE : ${creation.name}
+  creation.characters.forEach(
+    (character,index)=>{
 
-RÉFÉRENCE VISUELLE :
-Utiliser obligatoirement la photo de référence téléchargée.
-Préserver fidèlement l’identité visuelle du personnage, son visage,
-son âge apparent, sa texture de peau ou de pelage, sa morphologie
-et tous ses attributs naturels visibles, notamment oreilles, queue,
-fourrure, écailles ou autres caractéristiques existantes.
-Ne pas supprimer ni ajouter de membres ou d’attributs anatomiques.
-La position, la coiffure, la couleur des cheveux et la tenue peuvent
-être adaptées à la scène demandée.
+      references+=
+`
 
-DEMANDE CRÉATIVE :
+PERSONNAGE ${index+1} — ${character.name}
+
+PHOTO DE RÉFÉRENCE :
+Utiliser exclusivement la photo de référence attribuée au PERSONNAGE ${index+1} (${character.name}).
+
+CONSERVATION OBLIGATOIRE :
+Préserver fidèlement son identité visuelle, son visage, son âge apparent, sa morphologie générale, ses proportions naturelles, sa texture de peau, fourrure, écailles ou matière corporelle visible.
+
+Préserver tous ses attributs naturels présents sur la référence : oreilles, queue, cornes, ailes, museau, fourrure, écailles, marques, motifs ou autres caractéristiques existantes.
+
+Ne pas transformer ce personnage en un autre personnage.
+Ne pas remplacer ses caractéristiques par celles d’un autre sujet.
+Ne pas supprimer ni ajouter de membres.
+Ne pas supprimer sa queue, ses oreilles ou ses attributs naturels.
+Ne pas modifier artificiellement son poids, son âge ou sa nature biologique.
+
+AUTORISÉ :
+Adapter sa position, sa pose, sa coiffure, la couleur de ses cheveux, ses vêtements et ses accessoires uniquement lorsque la scène le demande.
+`;
+    }
+  );
+
+
+  const final=
+`LANGUE :
+${creation.language}
+
+NOMBRE EXACT DE PERSONNAGES :
+${creation.count}
+
+RÈGLE ABSOLUE :
+L’image finale doit contenir exactement ${creation.count} personnage(s) principal(aux), correspondant exactement aux références fournies.
+
+Chaque photo appartient uniquement au personnage auquel elle est associée.
+
+Ne jamais :
+- fusionner deux personnages ;
+- échanger leurs visages ;
+- mélanger leurs attributs physiques ;
+- dupliquer un personnage ;
+- remplacer un personnage par un autre ;
+- inventer un personnage principal supplémentaire ;
+- supprimer un personnage demandé.
+
+${references}
+
+SCÈNE DEMANDÉE :
+
 ${creation.prompt}
 
+CONTINUITÉ DES IDENTITÉS :
+
+Chaque personnage doit rester immédiatement reconnaissable comme sa propre référence.
+
+Les caractéristiques d’un personnage ne doivent jamais être transférées à un autre.
+
+Si plusieurs personnages interagissent, conserver malgré tout une séparation anatomique parfaitement claire entre leurs corps, membres, vêtements et attributs.
+
+ANATOMIE :
+
+Respecter une anatomie cohérente pour chacun.
+
+Aucun membre supplémentaire.
+Aucun membre manquant.
+Aucune main fusionnée.
+Aucun visage fusionné.
+Aucun corps fusionné.
+Aucune duplication involontaire.
+Aucune queue ou oreille appartenant au mauvais personnage.
+
+COMPOSITION :
+
+Créer une scène claire, lisible et cohérente où chacun des ${creation.count} personnages dispose d’une place identifiable dans la composition.
+
+Respecter les positions et interactions indiquées dans la demande créative.
+
 QUALITÉ :
-Image verticale cinématographique très détaillée, rendu haut de gamme,
-composition cohérente, anatomie correcte, lumière travaillée,
-textures précises et sujet parfaitement lisible.
+
+Image cinématographique ultra-détaillée haut de gamme.
+
+Textures précises.
+Éclairage travaillé.
+Profondeur naturelle.
+Détails nets.
+Composition harmonieuse.
+Sujet(s) parfaitement lisible(s).
+
+Format vertical 9:16 lorsque rien d’autre n’est demandé.
 
 SIGNATURE :
-Ajouter en bas à droite la signature « Elysion » en lettres cursives.`;
 
-  document.getElementById("summary").innerHTML =
-    "<strong>Langue :</strong> "+escapeHtml(creation.language)+"<br>"+
-    "<strong>Nom :</strong> "+escapeHtml(creation.name)+"<br>"+
-    "<strong>Photo :</strong> référence chargée ✅";
+Ajouter obligatoirement en bas à droite la signature :
 
-  document.getElementById("finalPrompt").textContent=final;
+« Elysion »
+
+en lettres cursives élégantes, discrètes mais lisibles.`;
+
+  renderSummary();
+
+  document
+    .getElementById(
+      "finalPrompt"
+    )
+    .textContent=final;
 
   showStep(5);
 }
 
+
+function renderSummary(){
+
+  let html=
+
+    "<strong>Langue :</strong> "+
+    escapeHtml(creation.language)+
+    "<br>"+
+
+    "<strong>Nombre de personnages :</strong> "+
+    creation.count+
+    "<br><br>";
+
+
+  creation.characters.forEach(
+    (character,index)=>{
+
+      html+=`
+
+      <div class="character-summary">
+
+        <strong>
+          Personnage ${index+1}
+        </strong>
+
+        <br>
+
+        ${escapeHtml(character.name)}
+
+        <br>
+
+        📸 Photo associée ✅
+
+      </div>
+
+      `;
+    }
+  );
+
+
+  html+=
+
+    "<br><strong>Scène :</strong><br>"+
+    escapeHtml(creation.prompt);
+
+
+  document
+    .getElementById("summary")
+    .innerHTML=html;
+}
+
+
 async function copyPrompt(){
-  const text=document.getElementById("finalPrompt").textContent;
+
+  const text=
+    document
+      .getElementById(
+        "finalPrompt"
+      )
+      .textContent;
 
   try{
-    await navigator.clipboard.writeText(text);
-    toast("Prompt copié ✅");
+
+    await navigator
+      .clipboard
+      .writeText(text);
+
+    toast(
+      "Prompt copié ✅"
+    );
+
   }catch(e){
-    toast("Sélectionnez le prompt pour le copier.");
+
+    toast(
+      "Sélectionnez le prompt pour le copier."
+    );
   }
 }
 
+
 function restartCreator(){
+
   creation={
     language:"",
-    name:"",
-    photo:false,
+    count:0,
+    characters:[],
     prompt:""
   };
 
-  document.getElementById("name").value="";
-  document.getElementById("prompt").value="";
-  document.getElementById("photo").value="";
-  document.getElementById("photoPreview").style.display="none";
+  document
+    .getElementById(
+      "prompt"
+    )
+    .value="";
 
   document
-    .querySelectorAll(".languages button")
-    .forEach(b=>b.classList.remove("active"));
+    .getElementById(
+      "customCount"
+    )
+    .value="";
+
+  document
+    .querySelectorAll(
+      ".languages button"
+    )
+    .forEach(
+      b=>b.classList.remove(
+        "active"
+      )
+    );
+
+  document
+    .querySelectorAll(
+      ".count-grid button"
+    )
+    .forEach(
+      b=>b.classList.remove(
+        "active"
+      )
+    );
+
+  document
+    .getElementById(
+      "charactersContainer"
+    )
+    .innerHTML="";
 
   showStep(1);
 }
 
+
 function soon(name){
-  toast(name+" — bientôt disponible ✨");
+
+  toast(
+    name+
+    " — bientôt disponible ✨"
+  );
 }
+
 
 function toast(message){
-  const box=document.getElementById("toast");
+
+  const box=
+    document.getElementById(
+      "toast"
+    );
+
   box.textContent=message;
+
   box.style.display="block";
 
-  clearTimeout(window.toastTimer);
+  clearTimeout(
+    window.toastTimer
+  );
 
-  window.toastTimer=setTimeout(()=>{
-    box.style.display="none";
-  },2600);
+  window.toastTimer=
+    setTimeout(
+      ()=>{
+        box.style.display="none";
+      },
+      2800
+    );
 }
+
 
 function escapeHtml(text){
-  return text
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+
+  return String(text)
+
+    .replaceAll(
+      "&",
+      "&amp;"
+    )
+
+    .replaceAll(
+      "<",
+      "&lt;"
+    )
+
+    .replaceAll(
+      ">",
+      "&gt;"
+    )
+
+    .replaceAll(
+      '"',
+      "&quot;"
+    )
+
+    .replaceAll(
+      "'",
+      "&#039;"
+    );
 }
+
+
+function escapeAttribute(text){
+
+  return escapeHtml(
+    text || ""
+  );
+}
+
 </script>
 
 </body>
