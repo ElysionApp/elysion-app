@@ -488,7 +488,6 @@ select:focus{
 
     </div>
 
-
     <!-- ÉTAPE 4 : DESCRIPTION -->
 
     <div id="step4" class="hidden">
@@ -613,7 +612,6 @@ select:focus{
   class="toast"
 ></div>
 
-
 <script>
 
 let creation = {
@@ -622,7 +620,6 @@ let creation = {
   characters:[],
   prompt:""
 };
-
 
 function openCreator(){
 
@@ -639,7 +636,6 @@ function openCreator(){
   window.scrollTo(0,0);
 }
 
-
 function goHome(){
 
   document
@@ -652,7 +648,6 @@ function goHome(){
 
   window.scrollTo(0,0);
 }
-
 
 function showStep(n){
 
@@ -692,7 +687,6 @@ function chooseLanguage(language,button){
     220
   );
 }
-
 
 function selectCount(number,button){
 
@@ -1108,27 +1102,23 @@ function renderSummary(){
     }
   );
 
-
   html+=
 
     "<br><strong>Scène :</strong><br>"+
     escapeHtml(creation.prompt);
-
 
   document
     .getElementById("summary")
     .innerHTML=html;
 }
 
-
 async function copyPrompt(){
 
-  const text=
-    document
-      .getElementById(
-        "finalPrompt"
-      )
-      .textContent;
+  const text =
+  document
+    .getElementById("finalPrompt")
+    .innerText
+    .trim();
 
   try{
 
@@ -1317,7 +1307,7 @@ async function openFinalPromptChatGPT(){
 
   const text = document
     .getElementById("finalPrompt")
-    .textContent
+    .innerText
     .trim();
 
   if(!text){
