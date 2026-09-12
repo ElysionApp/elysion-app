@@ -561,7 +561,15 @@ select:focus{
       <button onclick="copyPrompt()">
         📋 Copier le prompt
       </button>
-
+      
+      <button
+        type="button"
+        class="secondary"
+        onclick="openFinalPromptChatGPT()"
+        >
+        ↗️ Ouvrir dans ChatGPT
+      </button>
+      
       <button
         class="secondary"
         onclick="showStep(4)"
@@ -1294,6 +1302,33 @@ Réponds uniquement avec la description améliorée de la scène, sans titre, sa
     .catch(() => {
       toast("Impossible de copier automatiquement le texte.");
     });
+}
+
+async function openFinalPromptChatGPT(){
+
+  const text = document
+    .getElementById("finalPrompt")
+    .textContent
+    .trim();
+
+  if(!text){
+    toast("Aucun prompt à envoyer.");
+    return;
+  }
+
+  try{
+
+    await navigator.clipboard.writeText(text);
+
+    toast("✅ Prompt copié. Dans ChatGPT : appui long → Coller → Envoyer.");
+
+    window.open("https://chatgpt.com/", "_blank");
+
+  }catch(e){
+
+    toast("Impossible de copier automatiquement le prompt.");
+
+  }
 }
   
 </script>
