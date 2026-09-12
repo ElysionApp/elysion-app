@@ -508,6 +508,14 @@ select:focus{
         placeholder="Ex. Gina et Vespera explorent un château abandonné sous une lune violette. Gina tient une lanterne tandis que Vespera ouvre une porte magique..."
       ></textarea>
 
+      <button
+        type="button"
+        class="secondary"
+        onclick="openCreativeChatGPT()"
+        >
+        ✨ Développer mon idée avec ChatGPT
+      </button>
+      
       <button onclick="prepareCreation()">
         Préparer ma création ✨
       </button>
@@ -676,7 +684,8 @@ function chooseLanguage(language,button){
 }
 
 
-function selectCount(number,button){
+functio
+  n selectCount(number,button){
 
   creation.count=number;
 
@@ -1240,6 +1249,51 @@ function escapeAttribute(text){
   );
 }
 
+function openCreativeChatGPT(){
+
+  const field = document.getElementById("prompt");
+  const idea = field.value.trim();
+
+  if(!idea){
+    toast("Écrivez d’abord une idée, même très courte ✨");
+    field.focus();
+    return;
+  }
+
+  const instruction =
+`Je travaille dans Elysion Studio et je souhaite développer uniquement le champ créatif de ma future image.
+
+IDÉE DE DÉPART :
+${idea}
+
+Aide-moi à enrichir cette scène pour en faire une description visuelle forte et exploitable pour une génération d’image.
+
+Tu peux développer :
+- le décor et l’environnement ;
+- l’ambiance ;
+- les actions et interactions ;
+- la composition et le cadrage ;
+- l’éclairage ;
+- les couleurs ;
+- les détails visuels et cinématographiques.
+
+IMPORTANT :
+Ne change pas les personnages déjà définis dans Elysion.
+N’ajoute aucun personnage.
+Ne définis pas leur apparence physique : leurs photos de référence sont gérées séparément par Elysion.
+Ne génère pas l’image.
+Retourne uniquement une description créative améliorée que je pourrai recopier dans le champ « Votre création » d’Elysion.`;
+
+  navigator.clipboard.writeText(instruction)
+    .then(() => {
+      toast("Instruction copiée ✨ Ouverture de ChatGPT…");
+      window.open("https://chatgpt.com/", "_blank");
+    })
+    .catch(() => {
+      toast("Impossible de copier automatiquement le texte.");
+    });
+}
+  
 </script>
  
 </body>
