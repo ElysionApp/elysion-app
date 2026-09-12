@@ -1284,7 +1284,7 @@ Retourne uniquement une description créative améliorée que je pourrai recopie
 
   navigator.clipboard.writeText(instruction)
     .then(() => {
-      toast("Instruction copiée ✨ Ouverture de ChatGPT…");
+      toast("✅ Idée copiée. Dans ChatGPT : appui long → Coller → Envoyer.");
       window.open("https://chatgpt.com/", "_blank");
     })
     .catch(() => {
