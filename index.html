@@ -764,16 +764,18 @@ function createCharacterForms(){
     i<creation.count;
     i++
   ){
-
-    creation.characters.push({
-      name:
-        previous[i]?.name || "",
-      photo:
-        previous[i]?.photo || false,
-      fileName:
-        previous[i]?.fileName || ""
-    });
-
+   
+creation.characters.push({
+  name:
+    previous[i]?.name || "",
+  photo:
+    previous[i]?.photo || false,
+  fileName:
+    previous[i]?.fileName || "",
+  signatureElement:
+    previous[i]?.signatureElement || ""
+});
+    
     const card=
       document.createElement("div");
 
@@ -799,6 +801,20 @@ function createCharacterForms(){
         placeholder="Ex. Gina, Vespera, Céline..."
         oninput="updateCharacterName(${i},this.value)"
       >
+
+<label>
+  Élément signature à préserver (optionnel)
+</label>
+
+<input
+  id="signature-${i}"
+  type="text"
+  value="${escapeAttribute(
+    creation.characters[i].signatureElement
+  )}"
+  placeholder="Ex. lanterne vivante fixée à l’extrémité de la queue"
+  oninput="updateSignatureElement(${i},this.value)"
+>
 
       <label>
         Photo de référence ${i+1}
@@ -838,7 +854,15 @@ function updateCharacterName(
     .name=value.trim();
 }
 
-
+function updateSignatureElement(
+  index,
+  value
+){
+  creation
+    .characters[index]
+    .signatureElement=value.trim();
+}
+  
 function previewCharacterPhoto(
   index,
   event
@@ -920,7 +944,6 @@ function validateCharacters(){
   showStep(4);
 }
 
-
 function prepareCreation(){
 
   const text=
@@ -957,6 +980,15 @@ CONSERVATION OBLIGATOIRE :
 Préserver fidèlement son identité visuelle, son visage, son âge apparent, sa morphologie générale, ses proportions naturelles, sa texture de peau, fourrure, écailles ou matière corporelle visible.
 
 Préserver tous ses attributs naturels présents sur la référence : oreilles, queue, cornes, ailes, museau, fourrure, écailles, marques, motifs ou autres caractéristiques existantes.
+
+${character.signatureElement ? `
+ÉLÉMENT SIGNATURE SPÉCIFIQUE — PRIORITÉ ABSOLUE :
+${character.signatureElement}
+
+Cet élément appartient exclusivement à ${character.name}.
+Il doit être clairement visible, conservé à son emplacement correct et reproduit fidèlement.
+Ne pas le supprimer, le déplacer, le remplacer, le simplifier ni le transférer à un autre personnage.
+` : ""}
 
 ARTEFACTS ET ÉLÉMENTS SIGNATURE — CONSERVATION ABSOLUE :
 Préserver exactement tous les artefacts, ornements, bijoux, objets fixés au corps, à la queue, aux oreilles, aux cornes, aux ailes ou aux vêtements présents sur la référence.
@@ -1147,7 +1179,6 @@ async function copyPrompt(){
   }
 }
 
-
 function restartCreator(){
 
   creation={
@@ -1207,7 +1238,6 @@ function soon(name){
   );
 }
 
-
 function toast(message){
 
   const box=
@@ -1231,7 +1261,6 @@ function toast(message){
       2800
     );
 }
-
 
 function escapeHtml(text){
 
@@ -1262,7 +1291,6 @@ function escapeHtml(text){
       "&#039;"
     );
 }
-
 
 function escapeAttribute(text){
 
