@@ -533,7 +533,6 @@ select:focus{
 
     </div>
 
-
     <!-- ÉTAPE 5 : RÉSUMÉ -->
 
     <div id="step5" class="hidden">
@@ -678,7 +677,6 @@ function showStep(n){
   });
 }
 
-
 function chooseLanguage(language,button){
 
   creation.language=language;
@@ -744,7 +742,6 @@ function useCustomCount(){
   showStep(3);
 }
 
-
 function createCharacterForms(){
 
   const container=
@@ -771,9 +768,7 @@ creation.characters.push({
   photo:
     previous[i]?.photo || false,
   fileName:
-    previous[i]?.fileName || "",
-  signatureElement:
-    previous[i]?.signatureElement || ""
+    previous[i]?.fileName || ""
 });
     
     const card=
@@ -802,20 +797,6 @@ creation.characters.push({
         oninput="updateCharacterName(${i},this.value)"
       >
 
-<label>
-  Élément signature à préserver (optionnel)
-</label>
-
-<input
-  id="signature-${i}"
-  type="text"
-  value="${escapeAttribute(
-    creation.characters[i].signatureElement
-  )}"
-  placeholder="Ex. lanterne vivante fixée à l’extrémité de la queue"
-  oninput="updateSignatureElement(${i},this.value)"
->
-
       <label>
         Photo de référence ${i+1}
       </label>
@@ -843,7 +824,6 @@ creation.characters.push({
   }
 }
 
-
 function updateCharacterName(
   index,
   value
@@ -852,15 +832,6 @@ function updateCharacterName(
   creation
     .characters[index]
     .name=value.trim();
-}
-
-function updateSignatureElement(
-  index,
-  value
-){
-  creation
-    .characters[index]
-    .signatureElement=value.trim();
 }
   
 function previewCharacterPhoto(
@@ -981,15 +952,6 @@ Préserver fidèlement son identité visuelle, son visage, son âge apparent, sa
 
 Préserver tous ses attributs naturels présents sur la référence : oreilles, queue, cornes, ailes, museau, fourrure, écailles, marques, motifs ou autres caractéristiques existantes.
 
-${character.signatureElement ? `
-ÉLÉMENT SIGNATURE SPÉCIFIQUE — PRIORITÉ ABSOLUE :
-${character.signatureElement}
-
-Cet élément appartient exclusivement à ${character.name}.
-Il doit être clairement visible, conservé à son emplacement correct et reproduit fidèlement.
-Ne pas le supprimer, le déplacer, le remplacer, le simplifier ni le transférer à un autre personnage.
-` : ""}
-
 ARTEFACTS ET ÉLÉMENTS SIGNATURE — CONSERVATION ABSOLUE :
 
 Analyser attentivement la photo de référence et identifier automatiquement tous les éléments distinctifs visibles du personnage.
@@ -1021,7 +983,6 @@ Adapter sa position, sa pose, sa coiffure, la couleur de ses cheveux, ses vêtem
 `;
     }
   );
-
 
   const final=
 `LANGUE :
