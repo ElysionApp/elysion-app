@@ -799,6 +799,8 @@ function openInteractivePrompt(){
     .getElementById("interactivePrompt")
     .classList.remove("hidden");
 
+  showInteractiveStep(1);
+
   window.scrollTo(0,0);
 }
 
@@ -843,6 +845,10 @@ function showInteractiveStep(n){
     .getElementById("interactiveStep2")
     .classList.toggle("hidden", n !== 2);
 
+  document
+    .getElementById("interactiveStep3")
+    .classList.toggle("hidden", n !== 3);
+
   window.scrollTo({
     top:0,
     behavior:"smooth"
@@ -865,6 +871,43 @@ function validateInteractiveName(){
   interactiveCreation.name = name;
 
   toast("Personnage : " + name);
+
+  setTimeout(
+    ()=>showInteractiveStep(3),
+    220
+  );
+}
+
+
+function previewInteractivePhoto(event){
+
+  const file = event.target.files[0];
+
+  if(!file)return;
+
+  interactiveCreation.photo = true;
+  interactiveCreation.fileName = file.name;
+
+  const reader = new FileReader();
+
+  reader.onload = function(e){
+    const img = document.getElementById("interactivePhotoPreview");
+    img.src = e.target.result;
+    img.className = "preview";
+    img.style.display = "block";
+  };
+
+  reader.readAsDataURL(file);
+}
+
+function validateInteractivePhoto(){
+
+  if(!interactiveCreation.photo){
+    toast("Ajoutez la photo du personnage.");
+    return;
+  }
+
+  toast("Photo de référence ajoutée ✅");
 }
   
 function goHome(){
@@ -908,7 +951,7 @@ function chooseLanguage(language,button){
   creation.language=language;
 
   document
-    .querySelectorAll(".languages button")
+    .querySelectorAll("#step1 .languages button")
     .forEach(b=>b.classList.remove("active"));
 
   button.classList.add("active");
