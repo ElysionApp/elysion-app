@@ -405,6 +405,83 @@ select:focus{
 
 </div>
 
+<div id="interactiveStep2" class="hidden">
+
+  <div class="eyebrow">
+    ÉTAPE 2
+  </div>
+
+  <h3>✒️ Quel est le nom du personnage ?</h3>
+
+  <input
+    id="interactiveName"
+    type="text"
+    placeholder="Ex. Gina, Vespera, Aurora..."
+  >
+
+  <button
+    type="button"
+    onclick="validateInteractiveName()"
+  >
+    Continuer ✨
+  </button>
+
+  <button
+    type="button"
+    class="secondary"
+    onclick="showInteractiveStep(1)"
+  >
+    ← Retour
+  </button>
+
+</div>
+
+<div id="interactiveStep3" class="hidden">
+
+  <div class="eyebrow">
+    ÉTAPE 3
+  </div>
+
+  <h3>📷 Photo de référence</h3>
+
+  <p>
+    Téléchargez la photo du personnage.
+  </p>
+
+  <div class="photo-box">
+
+    <input
+      id="interactivePhoto"
+      type="file"
+      accept="image/*"
+      onchange="previewInteractivePhoto(event)"
+    >
+
+    <img
+      id="interactivePhotoPreview"
+      alt=""
+      style="display:none;"
+    >
+
+  </div>
+
+  <button
+    type="button"
+    onclick="validateInteractivePhoto()"
+  >
+    Continuer ✨
+  </button>
+
+  <button
+    type="button"
+    class="secondary"
+    onclick="showInteractiveStep(2)"
+  >
+    ← Retour
+  </button>
+
+</div>
+    
   </div>
 
   <div class="signature">
@@ -428,7 +505,6 @@ select:focus{
       <span id="p4"></span>
       <span id="p5"></span>
     </div>
-
 
     <!-- ÉTAPE 1 : LANGUE -->
 
@@ -750,6 +826,45 @@ function chooseInteractiveLanguage(language,button){
   button.classList.add("active");
 
   toast("Langue sélectionnée : "+language);
+
+  setTimeout(
+    ()=>showInteractiveStep(2),   
+    220
+    );
+}
+
+function showInteractiveStep(n){
+
+  document
+    .getElementById("interactiveStep1")
+    .classList.toggle("hidden", n !== 1);
+
+  document
+    .getElementById("interactiveStep2")
+    .classList.toggle("hidden", n !== 2);
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+function validateInteractiveName(){
+
+  const field =
+    document.getElementById("interactiveName");
+
+  const name = field.value.trim();
+
+  if(!name){
+    toast("Indiquez le nom du personnage.");
+    field.focus();
+    return;
+  }
+
+  interactiveCreation.name = name;
+
+  toast("Personnage : " + name);
 }
   
 function goHome(){
