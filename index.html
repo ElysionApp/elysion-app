@@ -330,10 +330,9 @@ select:focus{
       🎨 Créer une image
     </button>
 
-    <button onclick="soon('Prompts interactifs')">
-      ✨ Prompt interactif
-    </button>
-
+<button onclick="openInteractivePrompt()">
+  ✨ Prompt interactif
+</button>
     <button onclick="soon('Univers Elysion')">
       🌙 Explorer Elysion
     </button>
@@ -343,7 +342,38 @@ select:focus{
   <div class="signature">Elysion</div>
 
 </section>
+<section id="interactivePrompt" class="hidden">
 
+  <button
+    class="back"
+    onclick="closeInteractivePrompt()"
+  >
+    ← Accueil
+  </button>
+
+  <div class="card">
+
+    <div class="eyebrow">
+      ELYSION STUDIO
+    </div>
+
+    <h2>✨ Prompt interactif</h2>
+
+    <p>
+      Créez votre prompt guidé étape par étape.
+    </p>
+
+    <div class="hint">
+      🚧 Le studio interactif est en cours de construction.
+    </div>
+
+  </div>
+
+  <div class="signature">
+    Elysion
+  </div>
+
+</section>
 
 <section id="creator" class="hidden">
 
@@ -636,6 +666,32 @@ function openCreator(){
   window.scrollTo(0,0);
 }
 
+function openInteractivePrompt(){
+
+  document
+    .getElementById("home")
+    .classList.add("hidden");
+
+  document
+    .getElementById("interactivePrompt")
+    .classList.remove("hidden");
+
+  window.scrollTo(0,0);
+}
+
+function closeInteractivePrompt(){
+
+  document
+    .getElementById("interactivePrompt")
+    .classList.add("hidden");
+
+  document
+    .getElementById("home")
+    .classList.remove("hidden");
+
+  window.scrollTo(0,0);
+}
+  
 function goHome(){
 
   document
