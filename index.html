@@ -363,9 +363,47 @@ select:focus{
       Créez votre prompt guidé étape par étape.
     </p>
 
-    <div class="hint">
-      🚧 Le studio interactif est en cours de construction.
-    </div>
+    <div id="interactiveStep1">
+
+  <div class="eyebrow">
+    ÉTAPE 1
+  </div>
+
+  <h3>🌍 Choisissez votre langue</h3>
+
+  <div class="languages">
+
+    <button
+      type="button"
+      onclick="chooseInteractiveLanguage('Français',this)"
+    >
+      🇫🇷 Français
+    </button>
+
+    <button
+      type="button"
+      onclick="chooseInteractiveLanguage('English',this)"
+    >
+      🇬🇧 English
+    </button>
+
+    <button
+      type="button"
+      onclick="chooseInteractiveLanguage('Español',this)"
+    >
+      🇪🇸 Español
+    </button>
+
+    <button
+      type="button"
+      onclick="chooseInteractiveLanguage('Deutsch',this)"
+    >
+      🇩🇪 Deutsch
+    </button>
+
+  </div>
+
+</div>
 
   </div>
 
@@ -427,7 +465,6 @@ select:focus{
       </div>
 
     </div>
-
 
     <!-- ÉTAPE 2 : NOMBRE DE PERSONNAGES -->
 
@@ -651,6 +688,16 @@ let creation = {
   prompt:""
 };
 
+let interactiveCreation = {
+  language:"",
+  name:"",
+  photo:false,
+  fileName:"",
+  concept:"",
+  answers:[],
+  finalPrompt:""
+};
+
 function openCreator(){
 
   document
@@ -690,6 +737,19 @@ function closeInteractivePrompt(){
     .classList.remove("hidden");
 
   window.scrollTo(0,0);
+}
+
+function chooseInteractiveLanguage(language,button){
+
+  interactiveCreation.language=language;
+
+  document
+    .querySelectorAll("#interactiveStep1 .languages button")
+    .forEach(b=>b.classList.remove("active"));
+
+  button.classList.add("active");
+
+  toast("Langue sélectionnée : "+language);
 }
   
 function goHome(){
@@ -917,7 +977,6 @@ function previewCharacterPhoto(
   reader.readAsDataURL(file);
 }
 
-
 function validateCharacters(){
 
   for(
@@ -1119,7 +1178,6 @@ en lettres cursives élégantes, discrètes mais lisibles.`;
   showStep(5);
 }
 
-
 function renderSummary(){
 
   let html=
@@ -1131,7 +1189,6 @@ function renderSummary(){
     "<strong>Nombre de personnages :</strong> "+
     creation.count+
     "<br><br>";
-
 
   creation.characters.forEach(
     (character,index)=>{
